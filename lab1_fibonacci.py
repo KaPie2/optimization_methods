@@ -1,14 +1,21 @@
 # вариант 8
 
 def F(n):
-    if n == 0 or n == 1:
+    if n <= 1:
         return 1
     return F(n - 1) + F(n - 2)
+
+def find_n(a, b, eps):
+    n = 2
+    while F(n) < ((b - a) / eps):
+        n += 1
+    return n
 
 def f(x):
     return x**3 - x
 
-def fibonacci_method(a, b, n):
+def fibonacci_method(a, b):
+    n = find_n(a, b, 0.01)
     while n > 2:
         L = abs(b - a)
 
@@ -33,6 +40,8 @@ def fibonacci_method(a, b, n):
             x1 = b - (x2 - a)
             f1 = f(x1)
         n = n - 1
-    print(min(f1, f2))
+    x_min = (a + b) / 2
+    print(f'x_min = {x_min}')
+    print(f'f(x_min) = {f(x_min)}')
 
-fibonacci_method(0, 1, 12)
+fibonacci_method(0, 1)
