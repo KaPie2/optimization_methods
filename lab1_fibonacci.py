@@ -1,3 +1,6 @@
+import time
+start_time = time.time()
+
 # вариант 8
 
 def F(n):
@@ -45,3 +48,7 @@ def fibonacci_method(a, b):
     print(f'f(x_min) = {f(x_min)}')
 
 fibonacci_method(0, 1)
+
+end_time = time.time()
+execution_time = end_time - start_time
+print(f"Время выполнения: {execution_time:.4f} секунд")
