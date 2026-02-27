@@ -6,7 +6,7 @@ start_time = time.time()
 def f(x):
     return x ** 3 - x
 
-def dichotomy(f, a, b, eps):
+def dichotomy(a, b, eps):
     while (b - a) > 2 * eps:
         x = (a + b) / 2
 
@@ -30,7 +30,7 @@ def dichotomy(f, a, b, eps):
 
     return x_min, f_min
 
-x_min, f_min = dichotomy(f, 0, 1, 0.01)
+x_min, f_min = dichotomy(0, 1, 0.01)
 
 end_time = time.time()
 execution_time = end_time - start_time
