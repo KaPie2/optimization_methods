@@ -6,7 +6,7 @@ start_time = time.time()
 def f(x):
     return x ** 3 - x
 
-def golden_section(f, a, b, eps):
+def golden_section(a, b, eps):
     tau = 0.618
 
     L = b - a
@@ -40,7 +40,7 @@ def golden_section(f, a, b, eps):
 
     return x_min, f_min
 
-x_min, f_min = golden_section(f, 0, 1, 0.01)
+x_min, f_min = golden_section(0, 1, 0.01)
 
 end_time = time.time()
 execution_time = end_time - start_time
