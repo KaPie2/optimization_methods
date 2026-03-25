@@ -61,3 +61,4 @@ def related_directions(x0, eps, max_iter=1000):
 
 x_opt = related_directions([0,0], 1e-6)
 print(f"x1 = {x_opt[0]:.2f}, x2 = {x_opt[1]:.2f}")
+print(f"Значение функции: {f(x_opt[0], x_opt[1]):.6f}")
