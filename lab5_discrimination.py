@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Те же параметры, что в двух других методах
 a1, b1, c1, d1 = 2, 5, 3, 5
 a2, b2, c2, d2 = 3, -7, 1, -2
 a3, b3, c3, d3 = 1, 8, 2, -4
@@ -15,11 +14,8 @@ def f2(x):
 def f3(x):
     return a3 * (x[0] - b3) ** 2 + c3 * (x[1] - d3) ** 2
 
-# Дискриминационный шаг: минимизируем f1 на сетке при ограничениях по f2 и f3
-def discrimination_step(a2_level, a3_level,
-                        x1_min=-10, x1_max=10,
-                        x2_min=-10, x2_max=10,
-                        n=301):
+# минимизируем f1 на сетке при ограничениях по f2 и f3
+def discrimination_step(a2_level, a3_level, x1_min=-10, x1_max=10, x2_min=-10, x2_max=10, n=301):
 
     x1_vals = np.linspace(x1_min, x1_max, n)
     x2_vals = np.linspace(x2_min, x2_max, n)
@@ -41,7 +37,7 @@ def discrimination_step(a2_level, a3_level,
 def generate_pareto_discrimination():
     points = []
 
-    # уровни для ограничений (подбери при необходимости под свою картинку)
+    # уровни для ограничений
     levels = [50, 80, 110, 140, 170, 200, 230, 260, 290, 320]
 
     for a3_level in levels:
@@ -50,7 +46,7 @@ def generate_pareto_discrimination():
 
         x, val_f1 = discrimination_step(a2_level, a3_level)
         if x is not None:
-            # Проверяем, чтобы точки сильно не совпадали
+            # проверка, чтобы точки сильно не совпадали
             is_unique = True
             for p in points:
                 if np.linalg.norm(p - x) < 0.1:

@@ -16,7 +16,7 @@ def f2(x):
 def f3(x):
     return a3 * (x[0] - b3) ** 2 + c3 * (x[1] - d3) ** 2
 
-# Этап 1
+# Этап 1 минимизация f1
 res1 = opt.minimize(f1, x0=[0, 0])
 f1_star = f1(res1.x)
 
@@ -24,12 +24,12 @@ pareto_points = []
 
 # Генерируем 10 точек
 for Delta1 in np.linspace(5, 100, 10):
-    # Этап 2
+    # Этап 2 минимизация f2 с ограничением от f1
     cons2 = ({'type': 'ineq', 'fun': lambda x: Delta1 - (f1(x) - f1_star)})
     res2 = opt.minimize(f2, x0=[0, 0], method='SLSQP', constraints=cons2)
     f2_star = f2(res2.x)
 
-    # Этап 3
+    # Этап 3 минимизация f3 с ограничением от f1 и f2
     cons3 = [
         {'type': 'ineq', 'fun': lambda x: Delta1 - (f1(x) - f1_star)},
         {'type': 'ineq', 'fun': lambda x: 100 - (f2(x) - f2_star)}
